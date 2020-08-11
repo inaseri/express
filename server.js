@@ -9,7 +9,12 @@ app.use(bodyParser.json());
 // parse requests of content-type: application/x-www-form-urlencoded
 app.use(bodyParser.urlencoded({ extended: true }));
 
-require("./app/routes/customer.routes.js")(app);
+
+const userRoutes = require('./app/routes/user.routes.js');
+const customerRoutes = require('./app/routes/customer.routes.js');
+
+app.use('/api/auth', userRoutes);
+app.use('/api/customer', customerRoutes);
 
 // set port, listen for requests
 app.listen(3000, () => {

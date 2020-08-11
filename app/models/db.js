@@ -19,4 +19,8 @@ connectionDb.query(
     'create table if not exists Customer(id int primary key auto_increment,email varchar(255)not null,name varchar(255)not null,active boolean);'
 )
 
+connectionDb.query(
+    'create table if not exists User(id int primary key auto_increment,username varchar(255)not null,password varchar(255)not null,fullName varchar(255));'
+)
+
 module.exports = connectionDb;
