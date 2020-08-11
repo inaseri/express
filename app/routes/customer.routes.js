@@ -3,11 +3,13 @@ const router = express.Router();
 
 const customersCtrl = require("../controllers/customer.controller.js");
 
-router.post('/customers', customersCtrl.create);
-router.get('/customers', customersCtrl.findAll);
-router.get("/customers/:customerId", customersCtrl.findOne);
-router.put("/customers/:customerId", customersCtrl.update);
-router.delete("/customers/:customerId", customersCtrl.delete);
-router.delete("/customers", customersCtrl.deleteAll);
+const authentication = require('../middleware/auth');
+
+router.post('/customers', authentication,customersCtrl.create);
+router.get('/customers', authentication,customersCtrl.findAll);
+router.get("/customers/:customerId", authentication,customersCtrl.findOne);
+router.put("/customers/:customerId", authentication,customersCtrl.update);
+router.delete("/customers/:customerId", authentication,customersCtrl.delete);
+router.delete("/customers", authentication,customersCtrl.deleteAll);
 
 module.exports = router;
